@@ -3,12 +3,29 @@
  */
 package pom.java;
 
+import java.util.Scanner;
+
+import static pom.java.CleanString.lowerCase;
+import static pom.java.CleanString.removeSpecialCharsAndSpace;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+
+    public static String commandInsert() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+    public static boolean palindrome(String text) {
+        String lowerCase = lowerCase(text);
+        String reversedString = new ReverseString(lowerCase).reversedString();
+        String reversedAndRemovedSpecialChars = removeSpecialCharsAndSpace(reversedString);
+
+        String originalRemovedSpecialChars = removeSpecialCharsAndSpace(lowerCase);
+        return reversedAndRemovedSpecialChars.equals(originalRemovedSpecialChars);
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        String textInserted = commandInsert();
+        System.out.println(palindrome(textInserted));
     }
 }
